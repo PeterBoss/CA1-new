@@ -23,7 +23,7 @@ public class ChatServer extends Observable {
     private static boolean keepRunning;
     private ConcurrentMap<String, ClientThread> clientMap = new ConcurrentHashMap<>(); //for getting ClientThreads from their username
 
-    public void stopServer() {
+    public static void stopServer() {
         keepRunning = false;
     }
 

@@ -103,6 +103,9 @@ public class ClientThread extends Thread implements Observer {
     public String getUsername() { //used when we put in Map
         return username;
     }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     @Override
     public void update(Observable o, Object arg) {
