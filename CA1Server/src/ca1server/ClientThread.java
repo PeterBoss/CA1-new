@@ -31,6 +31,7 @@ public class ClientThread extends Thread implements Observer {
     @Override
     public void run() {
         boolean isValid = true;
+        writer.println("Connected");
         try {
             while (isValid) { //turns out doing while (true) is bad.
                 String message = reader.nextLine();

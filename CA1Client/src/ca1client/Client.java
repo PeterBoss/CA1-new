@@ -27,21 +27,33 @@ public class Client {
         output = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    public boolean isClosed() {
-        return socket.isClosed();
+    public String interpretOutgoing(String raw) {
+        String[] pieces = raw.split(":");
+        if (pieces.length > 1) {
+            if (!pieces[0].equals("LOGIN")) {
+                return "MSG:" + pieces[0] + ":" + pieces[1];
+            } else {
+                return raw;
+            }
+        } else {
+            return "MSG::" + raw;
+        }
+
     }
 
     public void send(String msg) {
         System.out.println("Sending " + msg);
-        output.println(msg);
+        output.println(interpretOutgoing(msg));
     }
 
     public void stop() throws IOException {
         output.println("LOGOUT:");
+        input.close();
+        output.close();
+        socket.close();
     }
 
     public String recieve() {
-        
         String msg = input.nextLine();
         System.out.println("Received: " + msg);
         return msg;
