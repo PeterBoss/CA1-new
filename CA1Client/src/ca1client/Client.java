@@ -19,9 +19,14 @@ public class Client {
     private Scanner input;
     private PrintWriter output;
 
-    public void connect(String ip, int port) throws UnknownHostException, IOException {
+    public Client(String ip, int port) throws java.net.UnknownHostException {
         this.port = port;
         serverAddress = InetAddress.getByName(ip);
+    }
+
+    
+    
+    public void connect() throws IOException {
         socket = new Socket(serverAddress, port);
         input = new Scanner(socket.getInputStream());
         output = new PrintWriter(socket.getOutputStream(), true);

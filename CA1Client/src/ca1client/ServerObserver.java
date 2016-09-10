@@ -16,6 +16,7 @@ public class ServerObserver extends Observable implements Runnable {
 
     public ServerObserver(Client client) {
         this.client = client;
+        
     }
 
     public void stop() throws IOException {
@@ -43,7 +44,7 @@ public class ServerObserver extends Observable implements Runnable {
     public void run() {
         System.out.println("Connecting");
         try {
-            client.connect("localhost", 8080); //temp hardcode
+            client.connect();
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }

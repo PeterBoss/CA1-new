@@ -1,6 +1,7 @@
 package ca1client;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -12,8 +13,8 @@ import java.util.logging.Logger;
  */
 public class GUI extends javax.swing.JFrame implements Observer {
 
-    Client client = new Client();
-    ServerObserver servObs;
+    private static Client client;
+    private ServerObserver servObs;
 
     public GUI() {
         initComponents();
@@ -111,7 +112,7 @@ public class GUI extends javax.swing.JFrame implements Observer {
         }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws UnknownHostException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -134,7 +135,7 @@ public class GUI extends javax.swing.JFrame implements Observer {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        client = new Client(args[0], Integer.valueOf(args[1]));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
